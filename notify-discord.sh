@@ -9,10 +9,15 @@ function curl_discord {
 } 
 
 
-if [[ "$#" -ne "2" ]] 
-then 
-    echo "Please give Title & Body for the message"
-    exit 3
+if [[ "$#" -eq "3" ]] 
+then 	
+	source $SCRIPT_DIR/.env-$1 
+	curl_discord "**$2**\\n$3"
+elif [[ "$#" -eq "2" ]]  
+then
+	curl_discord "**$1**\\n$2"
+else
+	echo "Please give Title & Body for the message"
+	exit 3
 fi
 
-curl_discord "**$1**\\n$2"
